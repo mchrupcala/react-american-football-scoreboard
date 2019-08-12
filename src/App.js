@@ -3,6 +3,8 @@ import React, {useState} from "react";
 import "./App.css";
 import BottomRow from "./BottomRow";
 
+
+
 function App() {
   //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
 
@@ -16,6 +18,20 @@ const handleHomeScore = points => {
 const handleAwayScore = points => {
   setAwayScore(awayScore + points);
 }
+
+  const [quarter, setQuarter] = useState(1);
+
+  const handleQuarter = i => {
+    if (quarter < 4) {
+      setQuarter(i + quarter);
+      // console.log(quarter);
+    }
+    else {
+      setQuarter(1);
+      // console.log(quarter);
+    }
+
+  }
 
   return (
     <div className="container">
@@ -34,7 +50,7 @@ const handleAwayScore = points => {
             <div className="away__score">{awayScore}</div>
           </div>
         </div>
-        <BottomRow />
+        <BottomRow quarter={quarter}/>
       </section>
       <section className="buttons">
         <div className="homeButtons">
@@ -45,6 +61,9 @@ const handleAwayScore = points => {
         <div className="awayButtons">
           <button className="awayButtons__touchdown" onClick={() => handleAwayScore(7)}>Away Touchdown</button>
           <button className="awayButtons__fieldGoal" onClick={() => handleAwayScore(3)}>Away Field Goal</button>
+        </div>
+        <div>
+          <button className="newButtons__changeQuarter" onClick={() => handleQuarter(1)} >Change Quarter</button>
         </div>
       </section>
     </div>
